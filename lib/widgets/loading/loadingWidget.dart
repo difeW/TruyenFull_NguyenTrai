@@ -1,3 +1,4 @@
+import 'package:client_app/theme/image_path_export.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,8 @@ class LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: background,
-      child: const Center(
-        child: CircularProgressIndicator(
-          color: Colors.blue,
-        ),
+      child: Center(
+        child: Image.asset(PathIcons.loading, width: 200),
       ),
     );
   }

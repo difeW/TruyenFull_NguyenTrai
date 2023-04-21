@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:client_app/core/routes.dart';
@@ -18,11 +17,15 @@ class ListStoryBloc extends Bloc<ListStoryEvent, ListStoryState> {
   ListStoryBloc(this._storyResponse, this._idCategory) : super(const ListStoryLoading()) {
     on<GetStoriesFirstPage>((event, emit) async {
       emit(const ListStoryLoading());
-      final stories = await _storyResponse.getStories(_idCategory, 0, numberItem);
-      if (stories.length < numberItem) {
-        emit(ListStoryHasData(stories: [...stories], loadMore: false, page: 1));
-      } else {
-        emit(ListStoryHasData(stories: [...stories, StoryModel()], loadMore: true, page: 1));
+      try{
+        final stories = await _storyResponse.getStories(_idCategory, 0, numberItem);
+        if (stories.length < numberItem) {
+          emit(ListStoryHasData(stories: [...stories], loadMore: false, page: 1));
+        } else {
+          emit(ListStoryHasData(stories: [...stories, StoryModel()], loadMore: true, page: 1));
+        }
+      }catch(e){
+        emit(ListStoryError());
       }
     });
 

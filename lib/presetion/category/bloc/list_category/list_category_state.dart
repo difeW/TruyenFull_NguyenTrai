@@ -11,3 +11,5 @@ class ListCategoryHasData extends ListCategoryState {
 }
 
 class ListCategoryLoading extends ListCategoryState{}
+
+class ListCategoryError extends ListCategoryState{}

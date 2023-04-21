@@ -70,9 +70,13 @@ class _TableOfContentState extends State<TableOfContent> {
                                       Navigator.pop(context);
                                     });
                                   },
-                                  child: Text(
-                                    e.header ?? "",
-                                    style: FontText.bodyMedium.black,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      e.header ?? "",
+                                      style: FontText.bodyMedium.black,
+                                      textAlign: TextAlign.start,
+                                    ),
                                   )),
                             ))
                         .toList(),

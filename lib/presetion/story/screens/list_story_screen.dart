@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:client_app/data/models/category_model.dart';
 import 'package:client_app/presetion/story/widgets/list_story/list_story_page_number.dart';
 import 'package:client_app/theme/font/font_text.dart';
+import 'package:client_app/widgets/error_widget/error_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -40,8 +41,7 @@ class ListStoryScreen extends StatelessWidget {
     /// handle scroll
     if (controller.position.userScrollDirection == ScrollDirection.forward) {
       hiddenSink.add(false);
-    }
-    else if (controller.position.userScrollDirection == ScrollDirection.reverse) {
+    } else if (controller.position.userScrollDirection == ScrollDirection.reverse) {
       hiddenSink.add(true);
     }
 
@@ -59,9 +59,19 @@ class ListStoryScreen extends StatelessWidget {
             break;
           case ListStoryHasData:
             final listStory = (state as ListStoryHasData).stories;
-            body = listStory!.isNotEmpty? ListStory(
-                listStory: listStory, controller: controller): _listEmpty();
+            body = listStory!.isNotEmpty
+                ? RefreshIndicator(
+                    onRefresh: () async {
+                      context.read<ListStoryBloc>().add(GetStoriesFirstPage());
+                    },
+                    child: ListStory(listStory: listStory, controller: controller),
+                  )
+                : _listEmpty();
             break;
+          default:
+            body = ErrorNetworkWidget(callback: (){
+              context.read<ListStoryBloc>().add(GetStoriesFirstPage());
+            });
         }
 
         return NotificationListener<ScrollNotification>(
@@ -71,12 +81,11 @@ class ListStoryScreen extends StatelessWidget {
             context,
           ),
           child: Scaffold(
-            floatingActionButton:StreamBuilder<bool>(
-              stream: hiddenStream,
-              builder: (context, snapshot) {
-                return ListStoryPageNumber(hidden: snapshot.data, numPage: state.page);
-              }
-            ),
+            floatingActionButton: StreamBuilder<bool>(
+                stream: hiddenStream,
+                builder: (context, snapshot) {
+                  return ListStoryPageNumber(hidden: snapshot.data, numPage: state.page);
+                }),
             appBar: _buildAppBar(context),
             body: body,
           ),
@@ -85,7 +94,7 @@ class ListStoryScreen extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(BuildContext context){
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       scrolledUnderElevation: 3,
@@ -106,9 +115,12 @@ class ListStoryScreen extends StatelessWidget {
     );
   }
 
-  Widget _listEmpty(){
+  Widget _listEmpty() {
     return Center(
-      child: Text("Danh sách trống", style: FontText.labelLarge,),
+      child: Text(
+        "Danh sách trống",
+        style: FontText.labelLarge,
+      ),
     );
   }
 }

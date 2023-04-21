@@ -14,8 +14,12 @@ class ListCategoryBloc extends Bloc<ListCategoryEvent, ListCategoryState> {
   ListCategoryBloc(this._categoryResponse) : super(ListCategoryLoading()) {
     on<GetCategories>((event, emit) async {
       emit(ListCategoryLoading());
-      final categories = await _categoryResponse.getCategories();
-      emit(ListCategoryHasData(categories));
+      try{
+        final categories = await _categoryResponse.getCategories();
+        emit(ListCategoryHasData(categories));
+      }catch(e){
+        emit(ListCategoryError());
+      }
     });
 
     on<OnPressItemCategory>((event, emit) {

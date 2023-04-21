@@ -2,12 +2,11 @@
 class Assets {
   Assets._();
 
-  static const String assetsImagesBookLoading = 'assets/images/book_loading.png';
   static const String fontsRobotoMonoBold = 'assets/fonts/RobotoMono-Bold.ttf';
   static const String fontsRobotoMonoRegular = 'assets/fonts/RobotoMono-Regular.ttf';
   static const String fontsYsabeauBold = 'assets/fonts/Ysabeau-Bold.ttf';
   static const String fontsYsabeauRegular = 'assets/fonts/Ysabeau-Regular.ttf';
-  static const String imagesBookLoading = 'assets/images/bookLoading.jpg';
-  static const String imagesHinhanh = 'assets/images/hinhanh.jpg';
+  static const String imagesBookLoading = 'assets/images/book_loading.png';
+  static const String imagesLoading = 'assets/images/loading.gif';
 
 }

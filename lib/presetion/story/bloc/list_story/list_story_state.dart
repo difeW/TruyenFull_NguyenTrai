@@ -17,3 +17,5 @@ class ListStoryHasData extends ListStoryState {
   const ListStoryHasData({super.stories, super.loadMore, super.page, super.loadingMore});
 }
 
+class ListStoryError extends ListStoryState{}
+
