@@ -4,12 +4,12 @@ import 'package:client_app/presetion/chapter/widgets/app_bar_chapter/app_bar_cha
 import 'package:client_app/presetion/chapter/widgets/chapter_table_of_content/table_of_content.dart';
 import 'package:client_app/theme/font/font_text.dart';
 import 'package:client_app/widgets/loading/loadingWidget.dart';
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 import '../../../bloc/state_font_of_chapter/state_font_of_chapter_cubit.dart';
+import '../../../core/dio_config/dio_info.dart';
 import '../../../data/models/chapter_model.dart';
 import 'change_state/change_state.dart';
 

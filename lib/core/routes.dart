@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import '../data/response/story_response.dart';
 import '../presetion/category/bloc/list_category/list_category_bloc.dart';
 import '../presetion/story/bloc/list_story/list_story_bloc.dart';
+import 'dio_config/dio_info.dart';
 
 class RouteManager {
   static final dio = DioInfo.dio();
