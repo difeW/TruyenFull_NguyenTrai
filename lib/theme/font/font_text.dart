@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FontText{
   static TextStyle header  = const TextStyle(fontWeight: FontWeight.bold, fontSize: 27);
-  static TextStyle title  = const TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
+  static TextStyle title  = const TextStyle(fontWeight: FontWeight.w500, fontSize: 18);
   static TextStyle titleLarge = const TextStyle(fontWeight: FontWeight.bold, fontSize: 29);
   static TextStyle headerCard  = const TextStyle(fontWeight: FontWeight.bold, fontSize: 17);
   static TextStyle labelLarge = const TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
@@ -12,6 +12,9 @@ class FontText{
 
 class AppColor {
   static Color primary = Colors.blue;
+  static Color white = Colors.white;
+  static Color black = Colors.black;
+  static Color red = Colors.red;
   static Color normal = Colors.black;
   static Color silver = const Color(0xffEFEFEF);
   static Color outline = const Color(0xFF707070);
@@ -22,4 +25,7 @@ extension TextColor on TextStyle {
   TextStyle get primary => copyWith(color: AppColor.primary);
   TextStyle get normal => copyWith(color: AppColor.normal);
   TextStyle get green => copyWith(color: AppColor.green);
+  TextStyle get red => copyWith(color: AppColor.red);
+  TextStyle get black => copyWith(color: AppColor.black);
+  TextStyle get white => copyWith(color: AppColor.white);
 }

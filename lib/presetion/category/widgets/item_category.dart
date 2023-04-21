@@ -40,7 +40,7 @@ class ItemCategory extends StatelessWidget {
           },
           child: Text(
             nameItem ?? "",
-            style: FontText.labelLarge.normal,
+            style: FontText.title.normal,
           )),
     );
   }
