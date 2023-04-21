@@ -9,7 +9,6 @@ import 'package:client_app/presetion/chapter/screens/chapter_list_detail.dart';
 import 'package:client_app/presetion/story/bloc/detail_story/detail_story_bloc.dart';
 import 'package:client_app/presetion/story/screens/detail_story_screen.dart';
 import 'package:client_app/presetion/story/screens/list_story_screen.dart';
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
