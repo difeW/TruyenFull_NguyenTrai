@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FontText{
   static TextStyle header  = const TextStyle(fontWeight: FontWeight.bold, fontSize: 27);
-  static TextStyle title  = const TextStyle(fontWeight: FontWeight.w500, fontSize: 18);
+  static TextStyle title  = const TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
   static TextStyle titleLarge = const TextStyle(fontWeight: FontWeight.bold, fontSize: 29);
   static TextStyle headerCard  = const TextStyle(fontWeight: FontWeight.bold, fontSize: 17);
   static TextStyle labelLarge = const TextStyle(fontWeight: FontWeight.bold, fontSize: 16);

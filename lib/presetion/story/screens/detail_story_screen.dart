@@ -66,7 +66,7 @@ class DetailStoryScreen extends StatelessWidget {
             Space.normal,
             DetailStoryInfo(infoStory: infoStory),
             Space.normal,
-            _buildButtonReadStory(context, listChapter.map((e) => e.id ?? 0).toList()),
+            _buildButtonReadStory(context, listChapter),
             Space.normal,
             DetailStoryDescription(description: storyModel.description ?? []),
             Space.normal,
@@ -80,7 +80,7 @@ class DetailStoryScreen extends StatelessWidget {
     ));
   }
 
-  Widget _buildButtonReadStory(BuildContext context, List<int> listIDChapter) {
+  Widget _buildButtonReadStory(BuildContext context, List<ChapterModel> listChapter) {
     return SizedBox(
         height: 60,
         width: MediaQuery.of(context).size.width / 3 * 2,
@@ -89,7 +89,7 @@ class DetailStoryScreen extends StatelessWidget {
             onPressed: () {
               context
                   .read<DetailStoryBloc>()
-                  .add(OnPressButtonReadStory(Navigator.of(context), listIDChapter));
+                  .add(OnPressButtonReadStory(Navigator.of(context), listChapter));
             },
             child: Text(
               "Đọc truyện",

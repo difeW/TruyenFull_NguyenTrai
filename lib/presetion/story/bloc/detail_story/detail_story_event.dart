@@ -14,17 +14,17 @@ class OnClickSeeAllChapter extends DetailStoryEvent{
 
 class OnPressAChapter extends DetailStoryEvent{
   final NavigatorState navigatorState;
-  final List<int> listIdChapter;
+  final List<ChapterModel> listChapter;
   final int currentId;
 
-  OnPressAChapter(this.navigatorState, this.listIdChapter, this.currentId,);
+  OnPressAChapter(this.navigatorState, this.listChapter, this.currentId,);
 
 }
 
 class OnPressButtonReadStory extends DetailStoryEvent{
   final NavigatorState navigatorState;
-  final List<int> listIdChapter;
+  final List<ChapterModel> listChapter;
 
-  OnPressButtonReadStory(this.navigatorState, this.listIdChapter);
+  OnPressButtonReadStory(this.navigatorState, this.listChapter);
 }
 

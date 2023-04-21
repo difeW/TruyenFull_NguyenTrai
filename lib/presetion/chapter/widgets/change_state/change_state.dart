@@ -1,11 +1,7 @@
-import 'package:client_app/bloc/state_font_of_chapter/state_font_of_chapter_cubit.dart';
 import 'package:client_app/presetion/chapter/widgets/change_state/change_background.dart';
 import 'package:client_app/presetion/chapter/widgets/change_state/change_fontSize.dart';
-import 'package:client_app/presetion/chapter/widgets/change_state/item_background.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../theme/font/font_text.dart';
 import '../../../../widgets/space/space.dart';
 import 'change_font_family.dart';
 

@@ -68,10 +68,10 @@ class RouteManager {
         try{
           Map<String, dynamic> mapData = setting.arguments as Map<String, dynamic>;
           int? currentID = mapData['currentID'];
-          List<int> listID = mapData['listID'];
-          return ChapterListDetail(listIdChapter: listID, currentIdChapter: currentID);
+          List<ChapterModel> listID = mapData['listID'];
+          return ChapterListDetail(listChapter: listID, currentIdChapter: currentID);
         } catch(e){
-          return const ChapterListDetail(listIdChapter: [], currentIdChapter: null);
+          return const ChapterListDetail(listChapter: [], currentIdChapter: null);
         }
       default:
         return Scaffold(

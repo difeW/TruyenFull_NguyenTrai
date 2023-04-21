@@ -1,4 +1,5 @@
-import 'package:flutter_html/flutter_html.dart';
+
+import 'package:client_app/core/routes.dart';
 
 import 'package:client_app/theme/font/font_text.dart';
 import 'package:flutter/material.dart';
@@ -14,15 +15,17 @@ class ChapterListAll extends StatefulWidget {
 }
 
 class _ChapterListAllState extends State<ChapterListAll> {
-  
   late final ValueNotifier<List<ChapterModel>> listChapterNotifier;
+  late List<int> listId;
 
   @override
   void initState() {
     listChapterNotifier = ValueNotifier(widget.listChapter);
+    listId = widget.listChapter.map((e) => e.id ?? 0).toList();
+    listId.sort();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,15 +34,23 @@ class _ChapterListAllState extends State<ChapterListAll> {
         elevation: 0,
         scrolledUnderElevation: 3,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: AppColor.outline,),
-          onPressed: (){
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColor.outline,
+          ),
+          onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         actions: [
-          IconButton(onPressed: (){
-            listChapterNotifier.value = listChapterNotifier.value.reversed.toList();
-          }, icon: Icon(Icons.menu, color: AppColor.primary,))
+          IconButton(
+              onPressed: () {
+                listChapterNotifier.value = listChapterNotifier.value.reversed.toList();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: AppColor.primary,
+              ))
         ],
       ),
       body: SingleChildScrollView(
@@ -47,19 +58,30 @@ class _ChapterListAllState extends State<ChapterListAll> {
           padding: const EdgeInsets.all(16),
           child: AnimatedBuilder(
             animation: listChapterNotifier,
-            builder: (_,__) => Column(
+            builder: (_, __) => Column(
               children: [
                 ...listChapterNotifier.value
                     .map((e) => SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor:AppColor.silver.withOpacity(0.55)
-                      ),
-                        onPressed: () {}, child: Align(
-                      alignment: Alignment.centerLeft,
-                        child: Text(e.header ?? "", style: FontText.bodyMedium.normal,)))))
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0, backgroundColor: AppColor.silver.withOpacity(0.55)),
+                              onPressed: () {
+                                Navigator.pushNamed(context, RouteManager.chapterListDetail,
+                                    arguments: {
+                                      'currentID': e.id,
+                                      'listID': widget.listChapter,
+                                    });
+                              },
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    e.header ?? "",
+                                    style: FontText.bodyMedium.normal,
+                                  ))),
+                        )))
                     .toList(),
               ],
             ),

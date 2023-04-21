@@ -19,7 +19,6 @@ class DetailStoryListChapter extends StatelessWidget {
 
 Widget _buildLayout({required List<ChapterModel> listChapter, required BuildContext context}) {
   final listNew = listChapter.sublist(0, listChapter.length < 6 ? listChapter.length : 6);
-  final listIdChapter =  listChapter.map((e) => e.id ?? 0).toList();
   return StoryCardWidget(
       noPadding: true,
       child: Padding(
@@ -30,11 +29,13 @@ Widget _buildLayout({required List<ChapterModel> listChapter, required BuildCont
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: AppSize.SIZE_SMALL),
-                  child: Text(
-                    "Các chương mới nhất",
-                    style: FontText.headerCard,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: AppSize.SIZE_SMALL),
+                    child: Text(
+                      "Các chương mới nhất",
+                      style: FontText.headerCard,
+                    ),
                   ),
                 ),
                 TextButton(
@@ -52,7 +53,7 @@ Widget _buildLayout({required List<ChapterModel> listChapter, required BuildCont
                 children: listNew
                     .map((e) => ItemChapter(
                           chapterModel: e,
-                          listIdChapter: listIdChapter,
+                          listChapter: listChapter,
                         ))
                     .toList(),
               ),
@@ -64,8 +65,8 @@ Widget _buildLayout({required List<ChapterModel> listChapter, required BuildCont
 
 class ItemChapter extends StatelessWidget {
   final ChapterModel chapterModel;
-  final List<int> listIdChapter;
-  const ItemChapter({Key? key, required this.chapterModel, required this.listIdChapter})
+  final List<ChapterModel> listChapter;
+  const ItemChapter({Key? key, required this.chapterModel, required this.listChapter})
       : super(key: key);
 
   @override
@@ -74,7 +75,7 @@ class ItemChapter extends StatelessWidget {
       onPressed: () {
         context
             .read<DetailStoryBloc>()
-            .add(OnPressAChapter(Navigator.of(context), listIdChapter, chapterModel.id ?? 0));
+            .add(OnPressAChapter(Navigator.of(context), listChapter, chapterModel.id ?? 0));
       },
       child: Align(
         alignment: Alignment.centerLeft,
